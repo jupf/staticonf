@@ -21,7 +21,5 @@ class DefaultSplitter(val splitString: String) : Splitter {
     override fun toString(): String{
         return "DefaultSplitter(splitString='$splitString')"
     }
-
-
 }
 
