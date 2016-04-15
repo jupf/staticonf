@@ -6,6 +6,7 @@ With StatiConf you can back a Kotlin property by a configuration file without ta
 The source/target compatibility is Java 1.6.  
 __The Kotlin Reflect API is needed for this library to be present.__  
 This library is currently being uploaded to jCenter and Maven Central.  
+Here is also an [example](src/main/kotlin/de/jupf/staticonf/example/example.kt) to look at.
 
 ### Gradle
 coming soon...  
