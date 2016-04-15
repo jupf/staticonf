@@ -52,7 +52,7 @@ statiConf.addType("java.util.UUID", { uuid -> UUID.fromString(uuid) })
 If you save such a type to a property file the toString method is called to parse it into a string.  
 With other words, your parsing function has to play nicely with the toString representation of the type!  
 
-## Example Config file
+## Example Config File
 ```shell
 # this is a UUID hex string
 globalID = 38400000-8cf0-11bd-b23e-10b96e4ef00d
