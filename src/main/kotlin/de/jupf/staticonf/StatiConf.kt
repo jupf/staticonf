@@ -13,7 +13,7 @@ import kotlin.reflect.KType
  * @author jpf
  */
 class StatiConf(val path: String, val docChar: Char = '#', delimiter: String = "=", val listSeparator: String = ";",
-                var parser: Parser = BasicTypeStringParser(), var splitter: Splitter = DefaultSplitter(delimiter)) {
+                val parser: Parser = BasicTypeStringParser(), val splitter: Splitter = DefaultSplitter(delimiter)) {
     private lateinit var entryMap: Map<String, String>
     private var fileContent: MutableList<String> = ArrayList()
 
@@ -82,5 +82,9 @@ class StatiConf(val path: String, val docChar: Char = '#', delimiter: String = "
         if (property.returnType.toString().startsWith("kotlin.collections.List"))
             return "${property.name} = ${value.toString().substring(1..value.toString().length - 2).replace(",", " $listSeparator ")}"
         return "${property.name} = ${value.toString()}"
+    }
+
+    fun addType(typeName: String, parse: (String) -> Any) {
+        parser.addType(typeName, parse)
     }
 }

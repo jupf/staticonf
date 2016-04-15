@@ -12,11 +12,12 @@ import java.util.*
 interface Parser {
     fun <R> parseEntry(configValue: String, returnType: String): R
     fun <R> parseEntryList(configValueList: String, returnType: String, listSeparator: String): R
+    fun addType(typeName: String, parse: (String) -> Any)
 }
 
 @Suppress("UNCHECKED_CAST")
 class BasicTypeStringParser() : Parser {
-    val parserMap: MutableMap<String, (String) -> Any> = LinkedHashMap()
+    private val parserMap: MutableMap<String, (String) -> Any> = LinkedHashMap()
 
     init {
         parserMap.put("kotlin.String", { s: String -> s })
@@ -43,5 +44,9 @@ class BasicTypeStringParser() : Parser {
         }
 
         return entryList as R
+    }
+
+    override fun addType(typeName: String, parse: (String) -> Any) {
+        parserMap.put(typeName,parse)
     }
 }
