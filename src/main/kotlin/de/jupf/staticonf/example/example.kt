@@ -18,17 +18,19 @@ fun main(args: Array<String>) {
 
     Config.ports = listOf(5000, 5001, 5555)
     Config.newEntry = "I'm new!"
+
+    Config.statiConf.addType("java.util.UUID", { uuid -> UUID.fromString(uuid) })
 }
 
 object Config {
-    var delegateConf = StatiConf("src/main/resources/config.file")
+    val statiConf = StatiConf("src/main/resources/config.file")
 
-    var globalID: UUID by delegateConf
-    var localID: Int by delegateConf
+    var globalID: UUID by statiConf
+    var localID: Int by statiConf
 
-    @Default("false") val serviceDiscovery: Boolean by delegateConf
+    @Default("false") val serviceDiscovery: Boolean by statiConf
 
-    var ports: List<Int> by delegateConf
+    var ports: List<Int> by statiConf
 
-    var newEntry: String by delegateConf
+    var newEntry: String by statiConf
 }
