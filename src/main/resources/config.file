@@ -1,0 +1,10 @@
+# this is a UUID hex string
+globalID = 38400000-8cf0-11bd-b23e-10b96e4ef00d
+
+# local identifier
+localID = 31337
+
+ports = 5000 ;  5001 ;  5005
+
+# decides if the service discovery is enabled
+serviceDiscovery = true

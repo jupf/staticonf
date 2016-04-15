@@ -1,0 +1,19 @@
+
+
+//noinspection GroovyAssignabilityCheck
+jar {
+    baseName = 'staticonf'
+}
+
+//create a jar with sources
+task sourcesJar(type: Jar) {
+    baseName = 'staticonf'
+    classifier = 'sources'
+    from { sourceSets.main.kotlin }
+}
+
+task javadocJar(type: Jar) {
+    baseName = 'staticonf'
+    classifier = 'javadoc'
+    from javadoc
+}

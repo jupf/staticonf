@@ -1,0 +1,13 @@
+# gradle cache/build files
+.gradle
+build
+local.properties
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+% jar manifest
+/src/main/kotlin/META-INF

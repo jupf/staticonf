@@ -1,0 +1,59 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.1-2"
+    }
+}
+
+plugins {
+    id "com.jfrog.bintray" version "1.6"
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'maven-publish'
+
+group 'io.github.jupf.staticonf'
+version '1.0.0'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.1-2"
+    compile 'org.jetbrains.kotlin:kotlin-reflect:1.0.1-2'
+}
+
+rootProject.ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'StatiConf'
+
+    libraryVersion = version
+
+    publishedGroupId = 'io.github.jupf.staticonf'
+    libraryName = 'StatiConf'
+    artifact = 'staticonf'
+
+    libraryDescription = 'Super lightweight statically typed library for handling configuration files in Kotlin.'
+
+    siteUrl = 'https://github.com/jupf/staticlog'
+    gitUrl = 'https://github.com/jupf/staticlog.git'
+
+    developerId = 'jupf'
+    developerName = 'Julian Pfeifer'
+    developerEmail = 'julian.pfeifer.88@gmail.com'
+
+    licenseName = 'The MIT License (MIT)'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
+
+
+apply from: 'tasks.gradle'
+apply from: 'publish.gradle'
+apply from: 'bintray.gradle'
