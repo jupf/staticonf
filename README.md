@@ -1,17 +1,30 @@
 # StatiConf
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.0.1-blue.svg?style=flat) ](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat) ](LICENSE)[ ![Download](https://api.bintray.com/packages/jupf/maven/StatiConf/images/download.svg) ](https://bintray.com/jupf/maven/StatiConf/_latestVersion)  
 This is a statically typed library for handling configuration files through properties in [Kotlin](https://kotlinlang.org).  
 With StatiConf you can back a Kotlin property by a configuration file without taking care of any string parsing or stream handling.   
 
 ## Getting Started
 The source/target compatibility is Java 1.6.  
 __The Kotlin Reflect API is needed to be present for this library.__  
-This library is currently being uploaded to jCenter and Maven Central.  
+This library is uploaded to jCenter and Maven Central.  
 Here is also an [example](src/main/kotlin/de/jupf/staticonf/example/example.kt) to look at.
 
 ### Gradle
-coming soon...  
+```gradle
+dependencies {
+    compile 'io.github.jupf.staticonf:staticonf:1.0.0'
+}
+```
+
 ### Maven
-coming soon...
+```xml
+<dependency>
+  <groupId>io.github.jupf.staticonf</groupId>
+  <artifactId>staticonf</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
+```
 
 ## Loading from a Configuration File
 To load a configuration file, first you need to construct a StatiConf object from it:  
