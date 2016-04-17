@@ -36,7 +36,7 @@ Then you can delegate properties to it:
 val ports: List<Short> by statiConf
 val localID: Int by statiConf
 ```
-Now you can use this properties. They have the values parsed from the config.file.  
+__The properties have the values parsed from the config entry with the same name as the property.__  
 It is possible to use the `Kotlin.collections.List`. The standard separator in the config file is a `;`
 
 ## Saving to a Configuration File
