@@ -1,5 +1,5 @@
 # StatiConf
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.0.1-blue.svg?style=flat) ](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat) ](LICENSE)[ ![Download](https://api.bintray.com/packages/jupf/maven/StatiConf/images/download.svg) ](https://bintray.com/jupf/maven/StatiConf/_latestVersion)  
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.0.1-blue.svg?style=flat) ](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat) ](LICENSE)[ ![Download](https://api.bintray.com/packages/jupf/maven/StatiConf/images/download.svg) ](https://bintray.com/jupf/maven/StatiConf/_latestVersion) [![Dependency Status](https://www.versioneye.com/user/projects/57134c19fcd19a00415b1a6c/badge.svg)](https://www.versioneye.com/user/projects/57134c19fcd19a00415b1a6c)  
 This is a statically typed library for handling configuration files through properties in [Kotlin](https://kotlinlang.org).  
 With StatiConf you can back a Kotlin property by a configuration file without taking care of any string parsing or stream handling.   
 
