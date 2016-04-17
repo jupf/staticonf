@@ -4,7 +4,7 @@ This is a statically typed library for handling configuration files through prop
 With StatiConf you can back a Kotlin property by a configuration file without taking care of any string parsing or stream handling.   
 
 ## Getting Started
-The source/target compatibility is Java 1.6.  
+The source/target compatibility is Java 1.5.  
 __The Kotlin Reflect API is needed to be present for this library.__  
 This library is uploaded to jCenter and Maven Central.  
 Here is also an [example](src/main/kotlin/de/jupf/staticonf/example/example.kt) to look at.
