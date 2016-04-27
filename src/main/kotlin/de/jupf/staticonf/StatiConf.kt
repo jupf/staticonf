@@ -14,7 +14,7 @@ import kotlin.reflect.KType
  */
 class StatiConf(val path: String, val docChar: Char = '#', delimiter: String = "=", val listSeparator: String = ";",
                 val parser: Parser = BasicTypeStringParser(), val splitter: Splitter = DefaultSplitter(delimiter)) {
-    private lateinit var entryMap: Map<String, String>
+    private val entryMap: MutableMap<String, String> = LinkedHashMap()
     private var fileContent: MutableList<String> = ArrayList()
 
     init {
@@ -24,13 +24,25 @@ class StatiConf(val path: String, val docChar: Char = '#', delimiter: String = "
     private fun readFileEntries() {
         val bufferedReader = File(path).bufferedReader()
         bufferedReader.useLines { block ->
-            entryMap = block.associate {
+            entryMap.putAll(block.associate {
                 fileContent.add(it)
                 if (it.startsWith('#') || it.length == 0)
                     Pair("#", "#")
                 else
                     splitter.split(it)
-            }
+            })
+        }
+    }
+
+    private fun updateMap() {
+        entryMap.clear()
+        fileContent.forEach { line ->
+            entryMap.putAll( line.associate {
+                if (line.startsWith('#') || line.length == 0)
+                    Pair("#", "#")
+                else
+                    splitter.split(line)
+            })
         }
     }
 
@@ -76,6 +88,7 @@ class StatiConf(val path: String, val docChar: Char = '#', delimiter: String = "
             it.flush()
         }
 
+        updateMap()
     }
 
     private fun <V> createConfigLine(property: KProperty<*>, value: V): String {

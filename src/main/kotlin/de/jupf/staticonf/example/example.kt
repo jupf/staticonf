@@ -19,11 +19,13 @@ fun main(args: Array<String>) {
     Config.ports = listOf(5000, 5001, 5555)
     Config.newEntry = "I'm new!"
 
+    println(Config.newEntry)
+
     Config.statiConf.addType("java.util.UUID", { uuid -> UUID.fromString(uuid) })
 }
 
 object Config {
-    val statiConf = StatiConf("src/main/resources/config.file")
+    val statiConf = StatiConf("src/main/resources/config.file",delimiter = "=", docChar = '#', listSeparator = ";")
 
     var globalID: UUID by statiConf
     var localID: Int by statiConf
