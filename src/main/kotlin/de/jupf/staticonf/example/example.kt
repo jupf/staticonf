@@ -31,7 +31,7 @@ object Config {
     var globalID: UUID by statiConf
     var localID: Int by statiConf
 
-    @Default("false") val serviceDiscovery: Boolean by statiConf
+    val serviceDiscovery: Boolean by statiConf.withDefault(false)
 
     var ports: List<Int> by statiConf.withDefault(arrayListOf(9000))
 
