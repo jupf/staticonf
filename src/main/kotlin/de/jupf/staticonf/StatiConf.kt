@@ -14,12 +14,18 @@ import kotlin.reflect.KType
  */
 class StatiConf(val path: String, val docChar: Char = '#', delimiter: String = "=", val listSeparator: String = ";",
                 val parser: Parser = BasicTypeStringParser(), val splitter: Splitter = DefaultSplitter(delimiter)) {
-    private val entryMap: MutableMap<String, String> = LinkedHashMap()
+    internal val entryMap: MutableMap<String, String> = LinkedHashMap()
     private var fileContent: MutableList<String> = ArrayList()
 
     init {
         readFileEntries()
     }
+
+    /**
+     * Use the result of this method as delegate to be able to set a [defaultValue] for the property. If the property
+     * is not found in the config file, while requesting its value, this [defaultValue] will be returned.
+     */
+    fun <V> withDefault(defaultValue: V) = DefaultValuePropertyDelegate(defaultValue, this)
 
     private fun readFileEntries() {
         val bufferedReader = File(path).bufferedReader()
@@ -64,7 +70,7 @@ class StatiConf(val path: String, val docChar: Char = '#', delimiter: String = "
         return parseEntryOrList(entryMap[property.name]!!, property.returnType)
     }
 
-    private fun <V> parseEntryOrList(entryValue: String, returnType: KType): V {
+    internal fun <V> parseEntryOrList(entryValue: String, returnType: KType): V {
         if (returnType.toString().startsWith("kotlin.collections.List"))
             return parser.parseEntryList(entryValue, returnType.toString(), listSeparator)
         return parser.parseEntry(entryValue, returnType.toString())
@@ -74,7 +80,7 @@ class StatiConf(val path: String, val docChar: Char = '#', delimiter: String = "
         var lineChanged = false
         fileContent = fileContent.map { line ->
             if (!line.startsWith('#') && line.length != 0
-                    && splitter.split(line).first.equals(property.name)) {
+                    && splitter.split(line).first == property.name) {
                 lineChanged = true
                 createConfigLine(property, value)
             } else
@@ -83,9 +89,9 @@ class StatiConf(val path: String, val docChar: Char = '#', delimiter: String = "
         if (!lineChanged)
             fileContent.add(createConfigLine(property, value))
 
-        File(path).bufferedWriter().use {
-            it.write(fileContent.joinToString (separator = "\n", transform = { it }))
-            it.flush()
+        File(path).bufferedWriter().use { file ->
+            file.write(fileContent.joinToString (separator = "\n", transform = { it }))
+            file.flush()
         }
 
         updateMap()

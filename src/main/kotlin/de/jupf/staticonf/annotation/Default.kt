@@ -6,5 +6,6 @@ package de.jupf.staticonf.annotation
  * @created 07.04.2016
  * @author jpf
  */
+@Deprecated("Use the StatiConf method withDefault(...) instead")
 @Target(AnnotationTarget.PROPERTY)
 annotation class Default(val value: String)

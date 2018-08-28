@@ -17,6 +17,7 @@ fun main(args: Array<String>) {
     println(Config.ports)
 
     Config.ports = listOf(5000, 5001, 5555)
+
     Config.newEntry = "I'm new!"
 
     println(Config.newEntry)
@@ -32,7 +33,7 @@ object Config {
 
     @Default("false") val serviceDiscovery: Boolean by statiConf
 
-    var ports: List<Int> by statiConf
+    var ports: List<Int> by statiConf.withDefault(arrayListOf(9000))
 
     var newEntry: String by statiConf
 }

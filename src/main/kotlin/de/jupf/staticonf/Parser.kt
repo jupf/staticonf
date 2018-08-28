@@ -16,7 +16,7 @@ interface Parser {
 }
 
 @Suppress("UNCHECKED_CAST")
-class BasicTypeStringParser() : Parser {
+class BasicTypeStringParser : Parser {
     private val parserMap: MutableMap<String, (String) -> Any> = LinkedHashMap()
 
     init {
@@ -37,7 +37,7 @@ class BasicTypeStringParser() : Parser {
     }
 
     override fun <R> parseEntryList(configValueList: String, returnType: String, listSeparator: String): R {
-        val listType = returnType.substring(returnType.toString().indexOf('<')+1..returnType.toString().length - 2)
+        val listType = returnType.substring(returnType.indexOf('<')+1..returnType.length - 2)
         val entryList: MutableList<Any> = ArrayList()
         configValueList.split(listSeparator).forEach {
             entryList.add(parseEntry(it.trim(),listType))
@@ -47,6 +47,6 @@ class BasicTypeStringParser() : Parser {
     }
 
     override fun addType(typeName: String, parse: (String) -> Any) {
-        parserMap.put(typeName,parse)
+        parserMap[typeName] = parse
     }
 }
